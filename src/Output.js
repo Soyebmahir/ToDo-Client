@@ -15,13 +15,31 @@ useEffect(()=>{
 
 },[])
   
-  const completed = () => {
+  const completed = (id) => {
     // console.log("completed");
     toast("Task completed")
     setComplete(!complete);
    
     
   };
+  const handleUserDelete = id =>{
+    const allow = window.confirm('You dare to delete !');
+    if(allow){
+        console.log('deleting user with id, ', id);
+        const url = `http://localhost:5000/task/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.deletedCount > 0){
+                console.log('deleted');
+                const remaining = tasks.filter(user => user._id !== id);
+                setTasks(remaining);
+            }
+        })
+    }
+}
 
   return (
     <div>
@@ -48,12 +66,12 @@ useEffect(()=>{
                     <td>
                       <div className="btn-group flex-nowrap">
                         <button
-                          onClick={completed}
+                          onClick={ ()=>completed(task._id)}
                           className="btn btn-sm btn-success"
                         >
                           Completed
                         </button>
-                        <button className="btn btn-sm btn-warning">
+                        <button className="btn btn-sm btn-warning" onClick={()=>handleUserDelete(task._id)}>
                           Delete
                         </button>
                       </div>

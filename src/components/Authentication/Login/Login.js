@@ -31,6 +31,9 @@ const Login = () => {
     if (loading || gLoading) {
         return <Loading></Loading>
     }
+    if(user){
+        navigate('/home')
+    }
 
     if(error || gError){
         signInError= <p className='text-red-500'><small>{error?.message || gError?.message }</small></p>
@@ -99,7 +102,7 @@ const Login = () => {
                         {signInError}
                         <input className='btn w-full max-w-xs text-white' type="submit" value="Login" />
                     </form>
-                    <p><small>New to Doctors Portal <Link className='text-primary' to="/signup">Create New Account</Link></small></p>
+                    <p><small>New to Doctors Portal <Link className='text-primary' to="/signUp">Create New Account</Link></small></p>
                     <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
