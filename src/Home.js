@@ -8,7 +8,7 @@ const Home = () => {
     const des = e.target.des.value;
     const task = { name: name, description: des };
     console.log(task);
-    fetch('http://localhost:5000/task', {
+    fetch(' https://mighty-caverns-74861.herokuapp.com/task', {
       method: "POST",
       headers: {"content-type" : "application/json"},
       body: JSON.stringify(task)

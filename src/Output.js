@@ -6,7 +6,7 @@ const Output = () => {
   const [tasks, setTasks] = useState([]);
   const [complete, setComplete] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:5000/tasks")
+    fetch(" https://mighty-caverns-74861.herokuapp.com/tasks")
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [tasks]);
@@ -26,7 +26,7 @@ useEffect(()=>{
     const allow = window.confirm('You dare to delete !');
     if(allow){
         console.log('deleting user with id, ', id);
-        const url = `http://localhost:5000/task/${id}`;
+        const url = ` https://mighty-caverns-74861.herokuapp.com/task/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
